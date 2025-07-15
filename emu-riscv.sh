@@ -1,3 +1,4 @@
+# Install and run RISC-V emulator with Ubuntu 20.04.5 preinstalled image
 sudo apt install qemu-system-misc opensbi u-boot-qemu qemu-utils
 mkdir qemu-riscv && cd qemu-riscv
 wget https://cdimage.ubuntu.com/releases/20.04.4/release/ubuntu-20.04.5-preinstalled-server-riscv64+unmatched.img.xz
