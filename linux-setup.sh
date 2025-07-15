@@ -62,7 +62,7 @@ chsh -s $(which fish)
 
 # Starship
 curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
-echo 'starship init fish | source' >> ~/.config/fish/config.fish
+fish -c "echo 'starship init fish | source' >> ~/.config/fish/config.fish"
 
 # Install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
