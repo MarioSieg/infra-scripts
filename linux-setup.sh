@@ -7,7 +7,11 @@ set -euo pipefail
 sudo apt update
 
 # Base tools
-sudo apt install -y git curl wget btop htop ca-certificates software-properties-common lsb-release
+sudo apt install -y git curl wget btop htop ca-certificates software-properties-common lsb-release neofetch cowsay cmatrix
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
+sudo apt update && sudo apt install glow
 
 # C, C++ tools
 sudo apt install -y gcc g++ clang cmake make build-essential binutils-multiarch
@@ -55,9 +59,12 @@ curl -fsSL https://install.julialang.org | sh -s -- -y
 sudo apt install -y fish
 echo $(which fish) | sudo tee -a /etc/shells
 chsh -s $(which fish)
-fish
+
+# Starship
+curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
+echo 'starship init fish | source' >> ~/.config/fish/config.fish
 
 # Install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-source "$HOME/.cargo/env.fish"
+. "$HOME/.cargo/env"
 cargo install loc hyperfine bat delta eza # Install rust tools
