@@ -1,4 +1,8 @@
-# GPU Drivers must be installed before this script!
+#!/usr/bin/env bash
+set -euo pipefail
+
+# GPU Drivers must be installed before this script
+# Reboot after running this script
 
 sudo apt update
 
@@ -27,6 +31,7 @@ echo \
 sudo apt update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo docker run hello-world
+sudo usermod -aG docker $USER
 
 # NVIDIA docker toolkit
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
