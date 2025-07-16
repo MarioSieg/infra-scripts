@@ -36,6 +36,10 @@ RUN apt-get update && \
       make \
       gcc \
       g++ \
+      htop \
+      btop \
+      neofetch \
+      luajit \
       python3 \
       python3-pip \
       python3-venv && \
