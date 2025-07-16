@@ -3,7 +3,6 @@ set -euo pipefail
 
 docker build -t neo-dev-image .
 
-docker rm -f dev-container
 docker run -d \
   --name dev-container \
   --restart=always \
