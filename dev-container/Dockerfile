@@ -1,5 +1,10 @@
 FROM ubuntu:24.04
 
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY policy-rc.d /usr/sbin/policy-rc.d
+RUN chmod +x /usr/sbin/policy-rc.d
+
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
       openssh-server \
