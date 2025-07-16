@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY policy-rc.d /usr/sbin/policy-rc.d
+RUN chmod +x /usr/sbin/policy-rc.d
+
 sudo apt update
 
 # Base tools
