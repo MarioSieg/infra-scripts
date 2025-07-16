@@ -3,8 +3,10 @@ set -euo pipefail
 
 docker build -t neo-dev-image .
 
+docker rm -f dev-container
 docker run -d \
   --name dev-container \
   --restart=always \
-  -p 127.0.0.1:2222:22 \
+  -p 2222:22 \
+  -v ~/.ssh/id_ed25519.pub:/home/dev/.ssh/authorized_keys:ro \
   neo-dev-image
