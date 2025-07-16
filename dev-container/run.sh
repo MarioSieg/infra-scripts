@@ -8,5 +8,5 @@ docker run -d \
   --name dev-container \
   --restart=always \
   -p 2222:22 \
-  -v ~/.ssh/id_ed25519.pub:/home/dev/.ssh/authorized_keys:ro \
+  -v ~/macos_id_ed25519.pub:/home/dev/.ssh/authorized_keys:ro \
   neo-dev-image
