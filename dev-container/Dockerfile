@@ -26,4 +26,4 @@ RUN mkdir -p /home/dev/.ssh \
 EXPOSE 22
 CMD ["/usr/sbin/sshd","-D"]
 
-COPY ../misc/logo.txt /etc/motd
+COPY logo.txt /etc/motd
