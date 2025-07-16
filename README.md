@@ -1,3 +1,10 @@
+# Neo's Scripts
+
+* dev-container/ - My remote machine Docker container for C, C++, and Python development
+* emu/ - RISC-V emulator runner
+* setup/ - My Linux machine setup script
+
+
 # Connect to the dev container
 
 1. Generate an SSH key
