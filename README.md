@@ -17,4 +17,4 @@
 `cd neos-scripts/dev-container && bash ./run.sh`
 
 4. Connect to the dev container
-`ssh -i ~/.ssh/id_ed25519 -p <PORT> dev@<IP>`
+`ssh -i ~/.ssh/id_ed25519 -p 2222 dev@<IP>`
