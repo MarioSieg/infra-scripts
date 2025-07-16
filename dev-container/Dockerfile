@@ -16,9 +16,9 @@ RUN mkdir /var/run/sshd \
     && echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
 
 COPY in-container-setup.sh /install.sh
-RUN chown dev:dev /install.sh \
-    && chmod +x /install.sh \
-    && su dev -c "/install.sh"
+RUN chmod +x /install.sh \
+ && /install.sh \
+ && chown -R dev:dev /home/dev
 
 RUN mkdir -p /home/dev/.ssh \
     && chown dev:dev /home/dev/.ssh
