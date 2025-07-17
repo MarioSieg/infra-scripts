@@ -53,6 +53,14 @@ RUN wget -O - https://apt.llvm.org/llvm.sh | bash && \
 RUN mkdir -p /home/dev/.ssh && \
     chown -R dev:dev /home/dev/.ssh
 
+RUN apt-get update && apt-get install -y fish && rm -rf /var/lib/apt/lists/*
+RUN chsh -s /usr/bin/fish dev
+RUN curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
+RUN mkdir -p /home/dev/.config/fish && \
+    grep -qxF 'starship init fish | source' /home/dev/.config/fish/config.fish || \
+    echo 'starship init fish | source' >> /home/dev/.config/fish/config.fish && \
+    chown -R dev:dev /home/dev/.config
+
 COPY logo.txt /etc/motd
 COPY logo.txt /etc/ssh/banner.txt
 RUN sed -i 's@#Banner none@Banner /etc/ssh/banner.txt@' /etc/ssh/sshd_config
