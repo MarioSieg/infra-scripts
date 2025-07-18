@@ -1,6 +1,6 @@
 # Neo's Scripts
 
-* dev-container/ - My remote machine Docker container for C, C++, and Python development
+* dev-container/ - My remote machine Docker container with GPU support for CUDA, C, C++, and Python development
 * emu/ - RISC-V emulator runner
 * setup/ - My Linux machine setup script
 
