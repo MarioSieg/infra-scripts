@@ -1,9 +1,9 @@
 # Neo's Scripts
 
-* dev-container/ - My remote machine Docker container with GPU support for CUDA, C, C++, and Python development
-* emu/ - RISC-V emulator runner
-* setup/ - My Linux machine setup script
-
+* containers/dev/ - Remote machine Docker container with GPU support for CUDA, C, C++, and Python development
+* containers/riscv-emu/ - RISC-V emulator docker container
+* containers/pdf-tool/ - Stirling PDF docker container
+* containers/runall.sh - Run all containers
 
 # Connect to the dev container
 
