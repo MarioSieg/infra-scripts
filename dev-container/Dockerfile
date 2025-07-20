@@ -40,6 +40,8 @@ RUN apt-get update && \
       btop \
       neofetch \
       luajit \
+      nodejs \
+      npm \
       python3 \
       python3-pip \
       python3-venv && \
