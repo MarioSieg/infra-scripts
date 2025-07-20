@@ -55,6 +55,10 @@ RUN wget -O - https://apt.llvm.org/llvm.sh | bash && \
 RUN mkdir -p /home/dev/.ssh && \
     chown -R dev:dev /home/dev/.ssh
 
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
+    . "$HOME/.cargo/env" && \
+    cargo install loc hyperfine
+
 RUN apt-get update && apt-get install -y fish && rm -rf /var/lib/apt/lists/*
 RUN chsh -s /usr/bin/fish dev
 RUN curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
