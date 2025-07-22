@@ -1,5 +1,6 @@
 FROM nvidia/cuda:12.8.0-devel-ubuntu24.04
 ENV DEBIAN_FRONTEND=noninteractive
+ENV HOME=/home/dev 
 
 ARG GIT_USER_NAME
 ARG GIT_USER_EMAIL
@@ -63,6 +64,9 @@ RUN git config --global user.name  "${GIT_USER_NAME}" && \
     chmod 600 /home/dev/.git-credentials
 
 USER root
+
+RUN mkdir -p /home/dev/{workspace,tools,scratch} \
+    && chown -R dev:dev /home/dev/{workspace,tools,scratch}
 
 RUN wget -O - https://apt.llvm.org/llvm.sh | bash && \
     apt-get update && \
