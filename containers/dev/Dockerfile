@@ -1,6 +1,10 @@
 FROM nvidia/cuda:12.8.0-devel-ubuntu24.04
 ENV DEBIAN_FRONTEND=noninteractive
 
+ARG GIT_USER_NAME
+ARG GIT_USER_EMAIL
+ARG GIT_TOKEN
+
 COPY policy-rc.d /usr/sbin/policy-rc.d
 RUN chmod +x /usr/sbin/policy-rc.d
 
@@ -47,6 +51,19 @@ RUN apt-get update && \
       python3-venv && \
     rm -rf /var/lib/apt/lists/*
 
+USER dev
+WORKDIR /home/dev
+
+RUN git config --global user.name  "${GIT_USER_NAME}" && \
+    git config --global user.email "${GIT_USER_EMAIL}" && \
+    git config --global credential.helper store && \
+    git config --global credential.useHttpPath true && \
+    printf "https://%s:%s@github.com\n" \
+        "${GIT_USER_NAME}" "${GIT_TOKEN}" >  /home/dev/.git-credentials && \
+    chmod 600 /home/dev/.git-credentials
+
+USER root
+
 RUN wget -O - https://apt.llvm.org/llvm.sh | bash && \
     apt-get update && \
     apt-get install -y clang lld && \
@@ -65,6 +82,7 @@ RUN curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
 RUN mkdir -p /home/dev/.config/fish && \
     echo 'starship init fish | source' >> /home/dev/.config/fish/config.fish && \
     chown -R dev:dev /home/dev/.config
+
 
 COPY logo.txt /etc/motd
 COPY logo.txt /etc/ssh/banner.txt
