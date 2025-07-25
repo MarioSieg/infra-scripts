@@ -62,7 +62,7 @@ RUN git config --global user.name  "${GIT_USER_NAME}" && \
     printf "https://%s:%s@github.com\n" \
         "${GIT_USER_NAME}" "${GIT_TOKEN}" >  /home/dev/.git-credentials && \
     chmod 600 /home/dev/.git-credentials
-
+RUN git config --global --unset credential.useHttpPath
 USER root
 
 RUN mkdir -p /home/dev/{workspace,tools,scratch} \
@@ -86,7 +86,6 @@ RUN curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
 RUN mkdir -p /home/dev/.config/fish && \
     echo 'starship init fish | source' >> /home/dev/.config/fish/config.fish && \
     chown -R dev:dev /home/dev/.config
-
 
 COPY logo.txt /etc/motd
 COPY logo.txt /etc/ssh/banner.txt
