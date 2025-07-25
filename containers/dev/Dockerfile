@@ -65,8 +65,9 @@ RUN git config --global user.name  "${GIT_USER_NAME}" && \
 RUN git config --global --unset credential.useHttpPath
 USER root
 
-RUN mkdir -p /home/dev/{workspace,tools,scratch} \
-    && chown -R dev:dev /home/dev/{workspace,tools,scratch}
+RUN mkdir -p /home/dev/workspace && chown -R dev:dev /home/dev/workspace
+RUN mkdir -p /home/dev/tools && chown -R dev:dev /home/dev/tools
+RUN mkdir -p /home/dev/scratch && chown -R dev:dev /home/dev/scratch
 
 RUN wget -O - https://apt.llvm.org/llvm.sh | bash && \
     apt-get update && \
