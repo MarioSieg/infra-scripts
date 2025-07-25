@@ -9,6 +9,8 @@ ARG GIT_TOKEN
 COPY policy-rc.d /usr/sbin/policy-rc.d
 RUN chmod +x /usr/sbin/policy-rc.d
 
+RUN apt-get update && apt-get upgrade -y
+
 RUN apt-get update && \
     apt-get install -y \
       openssh-server \
@@ -17,6 +19,7 @@ RUN apt-get update && \
       ca-certificates \
       software-properties-common \
       lsb-release \
+      nano \
       gnupg \
       wget && \
     rm -rf /var/lib/apt/lists/*
