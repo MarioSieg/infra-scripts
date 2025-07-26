@@ -19,10 +19,16 @@ RUN apt-get update && \
       ca-certificates \
       software-properties-common \
       lsb-release \
+      tzdata \
       nano \
       gnupg \
       wget && \
     rm -rf /var/lib/apt/lists/*
+
+ENV TZ=Europe/Berlin
+RUN ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo $TZ > /etc/timezone && \
+    dpkg-reconfigure -f noninteractive tzdata
 
 RUN useradd -m -s /bin/bash dev && \
     echo "dev ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/dev
