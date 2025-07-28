@@ -20,6 +20,7 @@ RUN apt-get update && \
       software-properties-common \
       lsb-release \
       tzdata \
+      file \
       nano \
       gnupg \
       wget && \
