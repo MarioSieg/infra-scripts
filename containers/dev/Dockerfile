@@ -50,6 +50,8 @@ RUN apt-get update && \
       make \
       gcc \
       g++ \
+      gdb \
+      valgrind \
       htop \
       btop \
       neofetch \
