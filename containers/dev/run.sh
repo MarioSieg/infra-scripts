@@ -15,6 +15,8 @@ docker build \
 docker run -d \
   --name dev-container \
   --restart=always \
+  --cap-add=PERFMON \
+  --security-opt seccomp=unconfined \
   --gpus all \
   -p 2222:22 \
   neo-dev-image

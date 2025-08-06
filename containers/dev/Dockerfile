@@ -89,9 +89,18 @@ RUN wget -O - https://apt.llvm.org/llvm.sh | bash && \
 RUN mkdir -p /home/dev/.ssh && \
     chown -R dev:dev /home/dev/.ssh
 
+USER dev
+WORKDIR /home/dev
+
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     . "$HOME/.cargo/env" && \
     cargo install loc hyperfine
+
+RUN mkdir -p ~/.npm-global && \
+    npm config set prefix "$HOME/.npm-global" && \
+    echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> ~/.bashrc
+
+USER root
 
 RUN apt-get update && apt-get install -y fish && rm -rf /var/lib/apt/lists/*
 RUN chsh -s /usr/bin/fish dev
