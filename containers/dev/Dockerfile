@@ -14,6 +14,7 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get update && \
     apt-get install -y \
       openssh-server \
+      linux-tools-generic \
       sudo \
       curl \
       ca-certificates \
@@ -108,6 +109,7 @@ RUN curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
 RUN mkdir -p /home/dev/.config/fish && \
     echo 'starship init fish | source' >> /home/dev/.config/fish/config.fish && \
     chown -R dev:dev /home/dev/.config
+RUN fish -c "source $HOME/.cargo/env.fish"
 
 COPY logo.txt /etc/motd
 COPY logo.txt /etc/ssh/banner.txt
