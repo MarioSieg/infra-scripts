@@ -109,7 +109,9 @@ RUN curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
 RUN mkdir -p /home/dev/.config/fish && \
     echo 'starship init fish | source' >> /home/dev/.config/fish/config.fish && \
     chown -R dev:dev /home/dev/.config
-RUN fish -c "source $HOME/.cargo/env.fish"
+ENV CARGO_HOME=/home/dev/.cargo \
+    RUSTUP_HOME=/home/dev/.rustup \
+    PATH=$CARGO_HOME/bin:$PATH
 
 COPY logo.txt /etc/motd
 COPY logo.txt /etc/ssh/banner.txt
