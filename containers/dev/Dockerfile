@@ -112,6 +112,7 @@ RUN mkdir -p /home/dev/.config/fish && \
 ENV CARGO_HOME=/home/dev/.cargo \
     RUSTUP_HOME=/home/dev/.rustup \
     PATH=$CARGO_HOME/bin:$PATH
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 COPY logo.txt /etc/motd
 COPY logo.txt /etc/ssh/banner.txt

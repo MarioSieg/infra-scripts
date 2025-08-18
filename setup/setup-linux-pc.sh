@@ -19,6 +19,7 @@ bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" # Install latest LLVM
 
 # Python tools
 sudo apt install -y python3 python3-pip python3-venv
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Lua tools
 sudo apt install -y luajit luarocks
