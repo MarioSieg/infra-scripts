@@ -1,0 +1,1 @@
+sudo apt-get install nvidia-headless-575-open nvidia-utils-57
