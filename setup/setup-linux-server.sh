@@ -7,7 +7,50 @@ set -euo pipefail
 sudo apt update
 
 # Base tools
-sudo apt install -y git curl wget btop htop ca-certificates software-properties-common lsb-release neofetch
+sudo apt install -y git curl wget btop htop neofetch
+
+# Nvidia drivers
+sudo add-apt-repository ppa:graphics-drivers/ppa -y
+sudo apt update
+sudo apt-get install nvidia-headless-575-open nvidia-utils-575
+
+# Base dev tools
+ sudo apt-get install -y \
+    git \
+    cmake \
+    make \
+    gcc \
+    g++ \
+    gdb \
+    valgrind \
+    luajit \
+    nodejs \
+    npm \
+    python3 \
+    python3-pip \
+    python3-venv
+
+# Git config and github CLI
+git config --global credential.helper store
+
+(type -p wget >/dev/null || (sudo apt update && sudo apt install wget -y)) \
+	&& sudo mkdir -p -m 755 /etc/apt/keyrings \
+	&& out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+	&& cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+	&& sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+	&& sudo mkdir -p -m 755 /etc/apt/sources.list.d \
+	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+	&& sudo apt update \
+	&& sudo apt install gh -y
+
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+# Latest LLVM
+wget -O - https://apt.llvm.org/llvm.sh | sudo bash
+
+# UV
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Docker
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
